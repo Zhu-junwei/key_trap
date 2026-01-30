@@ -17,8 +17,11 @@ class DigitalDecoy:
         }
         self.targets = [
             "config/settings.yaml",
+            "config/secrets.yaml",
+            "config/secrets.json",
             "src/auth/provider.json",
             "infra/.env.production",
+            ".env",
             "docker/docker-compose.prod.yml",
             "scripts/deploy_config.sh"
         ]
@@ -82,4 +85,5 @@ if __name__ == "__main__":
     # ------------------------------------------
     
     decoy.deploy_traps(count_per_file=KEYS_PER_FILE)
+
     print(f"\n🚀 任务完成！共影响 {len(decoy.targets)} 个文件。")
