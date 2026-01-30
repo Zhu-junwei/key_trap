@@ -46,7 +46,9 @@ class DigitalDecoy:
         providers = list(self.registry.keys())
         
         for path in self.targets:
-            os.makedirs(os.path.dirname(path), exist_ok=True)
+            dir_path = os.path.dirname(path)
+            if dir_path:
+                os.makedirs(dir_path, exist_ok=True)
             
             with open(path, "w", encoding="utf-8") as f:
                 if path.endswith(".json"):
@@ -87,3 +89,4 @@ if __name__ == "__main__":
     decoy.deploy_traps(count_per_file=KEYS_PER_FILE)
 
     print(f"\n🚀 任务完成！共影响 {len(decoy.targets)} 个文件。")
+
