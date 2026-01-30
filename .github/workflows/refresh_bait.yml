@@ -2,7 +2,7 @@ name: Daily API Key Refresh
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -28,4 +28,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
+
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-rotate production keys $(date +'%Y-%m-%d')" && git push)
